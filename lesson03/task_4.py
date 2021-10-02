@@ -22,3 +22,39 @@ thesaurus_adv("Иван Сергеев", "Инна Серова", "Петр Ал
 
 Как поступить, если потребуется сортировка по ключам?
 """
+
+
+def thesaurus_adv(people: list or tuple) -> dict:
+    """
+    Функция генерирует справочник ФИО
+    В формате: {Ф:{И:{О:[ФИО,]}}}
+    """
+    # Сортировка входящих данных
+    people = sorted(people)
+    return_dict = {}
+
+    for person in people:
+        name, surname, patronymic = person.split()
+
+        surname_dict = return_dict.setdefault(surname[0], {})  # первая буква фамилии
+        name_dict = surname_dict.setdefault(name[0], {})  # первая буква имени
+        full_name = name_dict.setdefault(patronymic[0], [])  # первая буква отчества
+        full_name.append(person)
+
+    return return_dict
+
+
+if __name__ == '__main__':
+    people = ("Иван Сергеев Анатольевич",
+              "Игнат Серов Анатольевич",
+              "Петр Алексеев Анатольевич",
+              "Илья Иванов Юрьевич",
+              "Анна Савельева Юрьевна")
+
+    assert thesaurus_adv(people) == {'С': {'А': {'Ю': ['Анна Савельева Юрьевна']},
+                                           'И': {'А': ['Иван Сергеев Анатольевич',
+                                                       'Игнат Серов Анатольевич']}},
+                                     'И': {'И': {'Ю': ['Илья Иванов Юрьевич']}},
+                                     'А': {'П': {'А': ['Петр Алексеев Анатольевич']}}}
+
+    print('The test was successful')
