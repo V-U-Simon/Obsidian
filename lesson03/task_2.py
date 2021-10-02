@@ -8,4 +8,3 @@ num_translate_adv("One")
 num_translate_adv("two")
 "два"
 """
-
