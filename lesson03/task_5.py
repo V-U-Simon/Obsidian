@@ -28,30 +28,40 @@ def get_jokes(iters: int = 7, *, repeat_mark=True) -> list[str]:
     nouns = ["автомобиль", "лес", "огонь", "город", "дом"]
     adverbs = ["сегодня", "вчера", "завтра", "позавчера", "ночью"]
     adjectives = ["веселый", "яркий", "зеленый", "утопичный", "мягкий"]
+
     full = nouns, adverbs, adjectives
     max_len = max(map(lambda x: len(x), (nouns, adverbs, adjectives)))
 
     result = []
-    # print(list(zip(nouns, adverbs, adjectives)))
     # Проверка на маркер повторения / повтор шутки iters-указанных раз
     if repeat_mark:
+        # todo: сделать позднее через random.chosen
         for loop in range(iters):
             result.append(list(map(random.choice, full)))
 
+
     else:
+        # todo: сделать позднее через random.sample
         # Если не возможно использовать все элементы только 1 раз
+
+        # Для небольших последовательностей, через "тосовку"
+        # list(map(random.shuffle, full))
+        # return list(map(' '.join, zip(*full)))
+
         if iters > max_len: return ['введите меньшее колличество шуток', ]
 
         for loop in range(iters):
-            # вынес лямбду для более удобной читаемости
-            # seq.pop - удаление элемента из полследовательности и его возврат
-            # seq.index - получение индекса рандомного элемента
+            # lambda:
             # random.choice(seq) - выбор рандомного элемента
-            get_word = lambda seq: seq.pop(seq.index(random.choice(seq)))
-            temp = map(get_word, full)
+            # seq.index - получение индекса рандомного элемента
+            # seq.pop - удаление элемента из полследовательности и его возврат
+            temp = map(
+                lambda seq: seq.pop(seq.index(random.choice(seq))),
+                full)
             result.append(tuple(temp))
 
-    return list(map(lambda x: ' '.join(x), result))  # New
+    # New
+    return list(map(lambda x: ' '.join(x), result))
 
     # Old
     # for i, el_of_result in enumerate(result):
