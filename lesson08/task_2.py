@@ -15,12 +15,7 @@ parsed_raw = ('188.138.60.101', '17/May/2015:08:05:49 +0000', 'GET', '/downloads
 Можно ли для них уточнить регулярное выражение?
 """
 
-import requests
-import pathlib
-import os
-
-
-
+# todo: сделать позднее
 
 if __name__ == '__main__':
     pass

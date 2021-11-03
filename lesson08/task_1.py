@@ -5,9 +5,9 @@
 
 Пример:
 
->>> email_parse('someone@geekbrains.ru')
+# >>> email_parse('someone@geekbrains.ru')
 {'username': 'someone', 'domain': 'geekbrains.ru'}
->>> email_parse('someone@geekbrainsru')
+# >>> email_parse('someone@geekbrainsru')
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
   ...
@@ -18,8 +18,19 @@ ValueError: wrong email: someone@geekbrainsru
 имеет ли смысл в данном случае использовать функцию re.compile()?
 """
 
+import re
+
+
+def email_parse(email_address):
+    pattern = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
+    res = re.findall(pattern, email_address)
+    if res:
+        return dict(zip(['username', 'domain'], str(*res).split('@')))
+    raise ValueError(f'wrong email: {email_address}')
 
 
 if __name__ == '__main__':
-    pass
-
+    print(email_parse('someone@geekbrains.ru'))
+    # {'username': 'someone', 'domain': 'geekbrains.ru'}
+    # print(email_parse('someone@geekbrainsru'))
+    # ValueError: wrong email: someone@geekbrainsru

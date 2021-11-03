@@ -12,9 +12,9 @@ def calc_cube(x):
    return x ** 3
 
 
->>> a = calc_cube(5)
+# >>> a = calc_cube(5)
 125
->>> a = calc_cube(-5)
+# >>> a = calc_cube(-5)
 Traceback (most recent call last):
   ...
     raise ValueError(msg)
@@ -25,5 +25,28 @@ ValueError: wrong val -5
 """
 
 
+def val_checker(decor_func):
+    def _val_checker(fucn):
+        def wrapper(*args):
+
+            check = map(decor_func, args)  # == lambda x: x > 0
+            for ch, arg in zip(check, args):
+                if ch:
+                    return fucn(arg)
+                else:
+                    raise ValueError('Передано значение меньше 0')
+
+        return wrapper
+
+    return _val_checker
+
+
+@val_checker(lambda x: x > 0)
+def calc_cube(x):
+    return x ** 3
+
+
 if __name__ == '__main__':
-    pass
+    assert calc_cube(5) == 125
+    assert calc_cube(0) == 0
+    calc_cube(-5)  # ValueError('Передано значение меньше 0')
