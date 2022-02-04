@@ -1,0 +1,15 @@
+backports.entry-points-selectable==1.1.0
+certifi==2021.5.30
+chardet==3.0.4
+charset-normalizer==2.0.6
+checkio-client==0.2.18
+distlib==0.3.2
+filelock==3.0.12
+idna==2.7
+Pillow==8.3.2
+platformdirs==2.2.0
+requests==2.20.0
+six==1.16.0
+urllib3==1.24.3
+virtualenv==20.7.2
+websockets==9.1
