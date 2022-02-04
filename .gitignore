@@ -3,8 +3,13 @@ venv/
 .vscode/
 .DS_Store
 
-
 lesson04/__pycache__/
 lesson04/venv/
 lesson06/__pycache__/task_6.cpython-39.pyc
 lesson06/__pycache__/task_7.cpython-39.pyc
+
+.attachments/
+.obsidian*/
+.obsidian*
+.obsidian.vimrc.md
+.trash/
