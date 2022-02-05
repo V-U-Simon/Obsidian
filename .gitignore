@@ -1,7 +1,11 @@
 venv/
-.idea/
-.vscode/
-.DS_Store
+
+_*/
+_*
+.*/
+.*
+Obsidian/_*
+Obsidian/_*/
 
 lesson04/__pycache__/
 lesson04/venv/
@@ -13,3 +17,6 @@ lesson06/__pycache__/task_7.cpython-39.pyc
 .obsidian*
 .obsidian.vimrc.md
 .trash/
+.idea/
+.vscode/
+.DS_Store
